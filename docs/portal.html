@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b2545">
+  <title>স্মার্ট স্কুল পোর্টাল | মোমেনা খাতুন মডেল একাডেমি</title>
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/portal.css">
+</head>
+<body>
+
+  <!-- 1. LOGIN SCREEN CONTAINER (Visible when not authenticated) -->
+  <div id="loginScreen" class="portal-login-wrap" style="display: none;">
+    <div class="portal-login-card">
+      <div style="display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 14px;">
+        <button class="lang-toggle-btn" onclick="I18n.toggle()" style="padding: 4px 10px; font-size: 11.5px;">English</button>
+        <button class="theme-toggle-btn" style="padding: 4px 10px; font-size: 11.5px;">🌙 ডার্ক</button>
+      </div>
+
+      <div class="login-brand-header">
+        <img src="assets/logo.png" alt="মোমেনা খাতুন মডেল একাডেমি">
+        <h2>মোমেনা খাতুন মডেল একাডেমি</h2>
+        <p>স্মার্ট স্কুল ম্যানেজমেন্ট পোর্টাল</p>
+      </div>
+
+      <form id="portalLoginForm">
+        <div class="form-group">
+          <label for="loginUsername">ব্যবহারকারী নাম / মোবাইল / ইমেইল</label>
+          <input type="text" id="loginUsername" class="form-control" required placeholder="যেমন: admin বা student.101" autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">পাসওয়ার্ড</label>
+          <input type="password" id="loginPassword" class="form-control" required placeholder="আপনার পাসওয়ার্ড লিখুন" autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">লগইন করুন <b>→</b></button>
+      </form>
+
+      <!-- 1-Click Quick Demo Login Switcher -->
+      <div class="demo-account-pills">
+        <p>⚡ ১-ক্লিকে টেস্ট করতে যেকোনো রোলে ক্লিক করুন:</p>
+        <div class="demo-pill-grid">
+          <button class="demo-pill" onclick="quickFillLogin('admin', 'Admin@123')">👑 অ্যাডমিন (Admin)</button>
+          <button class="demo-pill" onclick="quickFillLogin('teacher.math', 'Teacher@123')">👨‍🏫 শিক্ষক (Teacher)</button>
+          <button class="demo-pill" onclick="quickFillLogin('student.101', 'Student@123')">🎓 শিক্ষার্থী (Student)</button>
+          <button class="demo-pill" onclick="quickFillLogin('guardian.rofiq', 'Guardian@123')">👨‍👩‍👦 অভিভাবক (Guardian)</button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 20px; font-size: 13px;">
+        <a href="index.html" style="color: var(--primary-600); font-weight: 700;">← মূল ওয়েবসাইটে ফিরে যান</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. MAIN PORTAL APP SHELL (Visible when authenticated) -->
+  <div id="portalAppShell" class="app-container" style="display: none;">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <img src="assets/logo.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-title-box">
+          <h3>মোমেনা খাতুন</h3>
+          <small>মডেল একাডেমি</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <!-- Dynamically rendered according to role -->
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="sidebarUserAvatar">👤</div>
+        <div class="sidebar-user-info">
+          <b id="sidebarUserName">ব্যবহারকারী</b>
+          <small id="sidebarUserRole" class="role-badge">ADMIN</small>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop-overlay" id="sidebarBackdrop"></div>
+
+    <!-- Main Content Area -->
+    <div class="app-main">
+      <!-- Topbar Header -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button class="topbar-toggle-btn" id="sidebarToggleBtn" aria-label="Toggle Navigation">☰</button>
+          <div class="page-title-box">
+            <h1 id="pageTitle">ড্যাশবোর্ড</h1>
+            <p id="pageSubtitle">মোমেনা খাতুন মডেল একাডেমি স্মার্ট সিস্টেম</p>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="lang-toggle-btn" id="langToggleBtn" onclick="I18n.toggle()">English</button>
+          <button class="theme-toggle-btn">🌙 ডার্ক</button>
+          <button class="btn btn-outline btn-sm" onclick="PortalApp.logout()">লগআউট</button>
+        </div>
+      </header>
+
+      <!-- Dynamic Page View Container -->
+      <main class="content-body" id="portalMainContent">
+        <!-- Views injected by portal.js -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Reusable Modals & Dialogs -->
+
+  <!-- Modal 1: Register New Student -->
+  <div class="modal-backdrop" id="addStudentModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>➕ নতুন শিক্ষার্থী ভর্তি নিবন্ধন</h3>
+        <button class="modal-close-btn" onclick="Modal.close('addStudentModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="newStudentForm">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>শিক্ষার্থীর পূর্ণ নাম *</label>
+              <input type="text" id="ns_name" class="form-control" required placeholder="বাংলায় বা ইংরেজিতে">
+            </div>
+            <div class="form-group">
+              <label>রোল নম্বর *</label>
+              <input type="number" id="ns_roll" class="form-control" required placeholder="যেমন: 1">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>শ্রেণি নির্বাচন *</label>
+              <select id="ns_class" class="form-control" required>
+                <!-- Injected -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label> শাখা (Section)</label>
+              <select id="ns_section" class="form-control">
+                <option value="1">শাখা ক (Section A)</option>
+                <option value="2">শাখা খ (Section B)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>পিতার নাম *</label>
+              <input type="text" id="ns_father" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>মাতার নাম *</label>
+              <input type="text" id="ns_mother" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>অভিভাবকের ফোন নম্বর *</label>
+              <input type="tel" id="ns_phone" class="form-control" required placeholder="01XXXXXXXXX">
+            </div>
+            <div class="form-group">
+              <label>রক্তের গ্রুপ</label>
+              <select id="ns_blood" class="form-control">
+                <option value="">নির্বাচন করুন</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>বর্তমান ঠিকানা</label>
+            <textarea id="ns_address" class="form-control" rows="2" placeholder="জামিরদিয়া, ভালুকা, ময়মনসিংহ"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">শিক্ষার্থী নিবন্ধন সম্পন্ন করুন</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Marks Entry Modal -->
+  <div class="modal-backdrop" id="marksEntryModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>📝 পরীক্ষার নম্বর এন্ট্রি ও মূল্যায়ন</h3>
+        <button class="modal-close-btn" onclick="Modal.close('marksEntryModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="marksEntryForm">
+          <input type="hidden" id="me_exam_id">
+          <input type="hidden" id="me_student_id">
+
+          <div style="background: var(--bg-muted); padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+            <b id="me_student_info">শিক্ষার্থীর নাম</b>
+          </div>
+
+          <div class="form-group">
+            <label>বিষয় নির্বাচন *</label>
+            <select id="me_subject_id" class="form-control" required>
+              <!-- Injected -->
+            </select>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>লিখিত নম্বর (Written)</label>
+              <input type="number" id="me_written" class="form-control" min="0" max="100" value="0">
+            </div>
+            <div class="form-group">
+              <label>নৈর্ব্যক্তিক (MCQ)</label>
+              <input type="number" id="me_mcq" class="form-control" min="0" max="100" value="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>শিক্ষকের মন্তব্য (Remarks)</label>
+            <input type="text" id="me_remarks" class="form-control" placeholder="যেমন: ভালো ফলাফল, আরও মনোযোগী হওয়া প্রয়োজন">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">নম্বর সংরক্ষণ করুন ও গ্রেড হিসাব করুন</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Report Card / Transcript Viewer -->
+  <div class="modal-backdrop" id="reportCardModal">
+    <div class="modal-dialog">
+      <div class="modal-header no-print">
+        <h3>🎓 একাডেমিক মার্কশিট ও ফলাফল বিবরণী</h3>
+        <div>
+          <button class="btn btn-navy btn-sm" onclick="window.print()">🖨️ মার্কশিট প্রিন্ট করুন</button>
+          <button class="modal-close-btn" onclick="Modal.close('reportCardModal')">×</button>
+        </div>
+      </div>
+      <div class="modal-body" id="reportCardModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Notice Creator Modal -->
+  <div class="modal-backdrop" id="createNoticeModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>📢 নতুন নোটিশ প্রকাশনা</h3>
+        <button class="modal-close-btn" onclick="Modal.close('createNoticeModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="createNoticeForm">
+          <div class="form-group">
+            <label>নোটিশের শিরোনাম *</label>
+            <input type="text" id="nt_title" class="form-control" required placeholder="যেমন: ২০২৬ সাময়িক পরীক্ষার সময়সূচি">
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>ক্যাটাগরি *</label>
+              <select id="nt_category" class="form-control" required>
+                <option value="GENERAL">সাধারণ নোটিশ</option>
+                <option value="EXAMINATION">পরীক্ষা সংক্রান্ত</option>
+                <option value="ADMISSION">ভর্তি বিজ্ঞপ্তি</option>
+                <option value="HOLIDAY">ছুটির নোটিশ</option>
+                <option value="EVENT">অনুষ্ঠান ও আয়োজন</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>টার্গেট অডিয়েন্স *</label>
+              <select id="nt_audience" class="form-control" required>
+                <option value="EVERYONE">সকলের জন্য (পাবলিক)</option>
+                <option value="STUDENTS">শুধু শিক্ষার্থী</option>
+                <option value="GUARDIANS">শুধু অভিভাবক</option>
+                <option value="TEACHERS">শুধু শিক্ষক পরিষদ</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>বিস্তারিত বিবরণ *</label>
+            <textarea id="nt_description" class="form-control" rows="5" required placeholder="নোটিশের পূর্ণাঙ্গ বিবরণ লিখুন..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">নোটিশ প্রকাশ করুন</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js?v=2.3.0"></script>
+  <script src="js/theme.js?v=2.3.0"></script>
+  <script src="js/api.js?v=2.3.0"></script>
+  <script src="js/components.js?v=2.3.0"></script>
+  <script src="js/portal.js?v=2.3.0"></script>
+</body>
+</html>

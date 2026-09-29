@@ -1,0 +1,101 @@
+/* ============================================================================
+   Design Tokens & Themes — Light / Dark Mode & Bangla Typography
+   ============================================================================ */
+
+:root {
+  /* Brand Palettes */
+  --primary-50: #f0f6fe;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #1d4ed8;
+  --primary-700: #134074;
+  --primary-800: #0b2545;
+  --primary-900: #071930;
+
+  --accent-gold: #f59e0b;
+  --accent-gold-dark: #d97706;
+  --accent-gold-light: #fef3c7;
+
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --danger: #ef4444;
+  --danger-light: #fee2e2;
+  --info: #0284c7;
+  --info-light: #e0f2fe;
+
+  /* Typography */
+  --font-bangla: "Hind Siliguri", system-ui, -apple-system, sans-serif;
+  --font-heading: "Playfair Display", "Hind Siliguri", serif;
+
+  /* Transition & Radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Light Theme (Default) */
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-muted: #f1f5f9;
+  --bg-overlay: rgba(7, 25, 48, 0.7);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --text-inverse: #ffffff;
+
+  --border-color: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --border-focus: #3b82f6;
+
+  --shadow-sm: 0 1px 3px rgba(11, 37, 69, 0.05);
+  --shadow-md: 0 4px 16px rgba(11, 37, 69, 0.08);
+  --shadow-lg: 0 12px 32px rgba(11, 37, 69, 0.12);
+  --shadow-xl: 0 24px 50px rgba(11, 37, 69, 0.16);
+
+  --sidebar-bg: #0b2545;
+  --sidebar-text: #e2e8f0;
+  --sidebar-text-muted: #94a3b8;
+  --sidebar-active-bg: rgba(245, 158, 11, 0.18);
+  --sidebar-active-text: #fde047;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-body: #0a0f1d;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #1e293b;
+  --bg-muted: #1f293d;
+  --bg-overlay: rgba(0, 0, 0, 0.85);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #64748b;
+  --text-inverse: #0f172a;
+
+  --border-color: #243048;
+  --border-subtle: #1e293b;
+  --border-focus: #60a5fa;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 24px 50px rgba(0, 0, 0, 0.6);
+
+  --sidebar-bg: #070d18;
+  --sidebar-text: #e2e8f0;
+  --sidebar-text-muted: #64748b;
+  --sidebar-active-bg: rgba(245, 158, 11, 0.15);
+  --sidebar-active-text: #fde047;
+}

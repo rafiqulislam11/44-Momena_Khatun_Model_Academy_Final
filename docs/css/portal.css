@@ -1,0 +1,389 @@
+/* ============================================================================
+   Smart School Portal Stylesheet — Dashboards, Data Views & Transcripts
+   ============================================================================ */
+
+/* 1. Portal Login Screen */
+.portal-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 10% 20%, #0d3468 0%, #082142 55%, #051428 100%);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.portal-login-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  max-width: 440px;
+  width: 100%;
+  padding: 38px 30px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 10;
+}
+.login-brand-header {
+  text-align: center;
+  margin-bottom: 26px;
+}
+.login-brand-header img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 12px;
+}
+.login-brand-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.login-brand-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.demo-account-pills {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+}
+.demo-account-pills p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.demo-pill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.demo-pill {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+.demo-pill:hover {
+  background: var(--primary-700);
+  color: #ffffff;
+  border-color: var(--primary-700);
+}
+
+/* 2. Portal Header & Shell Extensions */
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+.role-badge.admin { background: #fee2e2; color: #b91c1c; }
+.role-badge.teacher { background: #e0f2fe; color: #0369a1; }
+.role-badge.student { background: #d1fae5; color: #047857; }
+.role-badge.guardian { background: #fef3c7; color: #b45309; }
+
+/* 3. Child Switcher Bar for Guardians */
+.child-switcher-bar {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.child-pill {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.child-pill.active {
+  background: var(--primary-700);
+  color: #ffffff;
+  border-color: var(--primary-700);
+}
+
+/* 4. Attendance Marking Controls */
+.attendance-status-selector {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--bg-muted);
+  padding: 3px;
+  border-radius: var(--radius-md);
+}
+.att-btn {
+  border: none;
+  background: transparent;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+}
+.att-btn.present.active { background: var(--success); color: #ffffff; }
+.att-btn.absent.active { background: var(--danger); color: #ffffff; }
+.att-btn.late.active { background: var(--warning); color: #0b1e36; }
+.att-btn.leave.active { background: var(--info); color: #ffffff; }
+
+/* 5. Academic Report Card (Printable Transcript) */
+.report-card-container {
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #0b2545;
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+}
+.report-card-header {
+  text-align: center;
+  border-bottom: 2px double #0b2545;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+}
+.report-card-header img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin: 0 auto 8px;
+}
+.report-card-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0b2545;
+}
+.report-card-header p {
+  font-size: 12px;
+  color: #475569;
+}
+.report-title-badge {
+  display: inline-block;
+  background: #0b2545;
+  color: #ffffff;
+  padding: 4px 18px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.report-student-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background: #f8fafc;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid #e2e8f0;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+.report-student-meta p {
+  margin: 0;
+}
+
+.report-summary-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+  background: #f1f5f9;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.report-summary-box b {
+  display: block;
+  font-size: 20px;
+  color: #0b2545;
+}
+.report-summary-box small {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.report-signatures {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding-top: 20px;
+}
+.sig-line {
+  border-top: 1px dashed #64748b;
+  width: 160px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  padding-top: 6px;
+}
+
+/* 6. Routine Timetable Grid */
+.timetable-grid {
+  display: grid;
+  gap: 16px;
+}
+.timetable-day-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.timetable-day-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--primary-700);
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+}
+.timetable-periods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+.timetable-period-box {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 12px;
+}
+.timetable-period-box b {
+  display: block;
+  color: var(--text-primary);
+  font-size: 13px;
+}
+.timetable-period-box span {
+  color: var(--text-secondary);
+}
+
+/* Print Rules */
+@media print {
+  .app-sidebar, .app-topbar, .btn, .child-switcher-bar, .no-print {
+    display: none !important;
+  }
+  .app-main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .report-card-container {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}
+
+/* ============================================================================
+   Portal Responsive Rules for Tablets & Mobile Screens
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .child-switcher-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+  .child-switcher-bar > div {
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .child-pill {
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+
+  .report-card-container {
+    padding: 20px 14px;
+    margin: 0;
+  }
+  .report-card-header h2 {
+    font-size: 19px;
+  }
+  .report-student-meta {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+  .report-summary-box {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 12px;
+  }
+  .report-summary-box b {
+    font-size: 17px;
+  }
+  .report-signatures {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    margin-top: 36px;
+  }
+  .sig-line {
+    width: 200px;
+  }
+
+  .timetable-periods {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .timetable-period-box {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 500px) {
+  .portal-login-card {
+    padding: 24px 18px;
+    border-radius: var(--radius-lg);
+  }
+  .login-brand-header img {
+    width: 50px;
+    height: 50px;
+  }
+  .login-brand-header h2 {
+    font-size: 18px;
+  }
+  .demo-pill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-status-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 4px;
+  }
+  .att-btn {
+    text-align: center;
+    padding: 6px 4px;
+  }
+}

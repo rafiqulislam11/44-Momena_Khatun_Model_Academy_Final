@@ -1,0 +1,32 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables (sensitive secrets — NEVER commit)
+.env
+
+# Database (SQLite binary — auto-regenerated via seed)
+database/momena_academy.db
+database/momena_academy.db-shm
+database/momena_academy.db-wal
+
+# OS & Editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Scratch / temp analysis scripts
+scratch/
+
+# Log files
+*.log
+logs/
+
+# Build outputs
+dist/
+build/

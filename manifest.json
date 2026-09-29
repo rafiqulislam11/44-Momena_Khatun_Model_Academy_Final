@@ -1,0 +1,22 @@
+{
+  "name": "Momena Khatun Model Academy",
+  "short_name": "MKMA Academy",
+  "description": "Smart School Management Platform for Momena Khatun Model Academy, Bhaluka, Mymensingh",
+  "start_url": "/portal.html",
+  "display": "standalone",
+  "background_color": "#0b2545",
+  "theme_color": "#0b2545",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
